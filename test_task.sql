@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Jul 19, 2021 at 10:00 PM
+-- Generation Time: Jul 19, 2021 at 07:47 PM
 -- Server version: 8.0.25-0ubuntu0.20.04.1
 -- PHP Version: 7.4.21
 
@@ -24,28 +24,100 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `php_users`
+-- Table structure for table `orders`
 --
 
-CREATE TABLE `php_users` (
-  `tel` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `email` varchar(120) COLLATE utf8_unicode_ci NOT NULL,
-  `name` varchar(200) COLLATE utf8_unicode_ci NOT NULL,
-  `text` text COLLATE utf8_unicode_ci NOT NULL,
-  `checkbox` tinyint(1) DEFAULT NULL
+CREATE TABLE `orders` (
+  `order_id` int UNSIGNED NOT NULL,
+  `order_status` tinyint NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
 
 --
--- Dumping data for table `php_users`
+-- Dumping data for table `orders`
 --
 
-INSERT INTO `php_users` (`tel`, `email`, `name`, `text`, `checkbox`) VALUES
-('+7-916-0000000', 'prost@ta.ru', 'Иван', 'большой или маленький текст', 1),
-('+7-916-000-0000', 'prost@ta2.ru', 'Иван2', 'большой или маленький текст', 1),
-('+7-916-000-00-00', 'prost@ta3.ru', 'Иван3', 'большой или маленький текст', 1),
-('3432423', 'prost@ta4.ru', 'Иван4', 'большой или маленький текст', 1),
-('21651561', 'test5@test.ru', 'test5', 'askj asj ajelfsefse sefse', NULL),
-('2342342', 'test@test.ru', 'sldk fskf', 'd; kdfl ld kfsdkf s;ldkf;sl', 1);
+INSERT INTO `orders` (`order_id`, `order_status`) VALUES
+(1, 2),
+(2, 3),
+(3, 2),
+(4, 1);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_items`
+--
+
+CREATE TABLE `order_items` (
+  `uniq` int UNSIGNED NOT NULL,
+  `order_id` int UNSIGNED NOT NULL,
+  `product_id` int UNSIGNED NOT NULL,
+  `quantity` int UNSIGNED NOT NULL DEFAULT '1'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `order_items`
+--
+
+INSERT INTO `order_items` (`uniq`, `order_id`, `product_id`, `quantity`) VALUES
+(1, 1, 1234, 1),
+(2, 2, 7345, 1),
+(3, 3, 12345, 3),
+(4, 4, 73455, 4);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `users`
+--
+
+CREATE TABLE `users` (
+  `user` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `birthday` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8_unicode_ci;
+
+--
+-- Dumping data for table `users`
+--
+
+INSERT INTO `users` (`user`, `birthday`) VALUES
+('User1', '1998-04-19'),
+('User2', '1998-01-04'),
+('User1', '1999-02-21'),
+('User2', '1998-01-09'),
+('User5', '1998-01-13');
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `orders`
+--
+ALTER TABLE `orders`
+  ADD PRIMARY KEY (`order_id`);
+
+--
+-- Indexes for table `order_items`
+--
+ALTER TABLE `order_items`
+  ADD PRIMARY KEY (`uniq`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `orders`
+--
+ALTER TABLE `orders`
+  MODIFY `order_id` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7346;
+
+--
+-- AUTO_INCREMENT for table `order_items`
+--
+ALTER TABLE `order_items`
+  MODIFY `uniq` int UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

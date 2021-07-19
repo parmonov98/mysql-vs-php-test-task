@@ -1,0 +1,1 @@
+SELECT * from users WHERE birthday >= SUBDATE("1998-01-20", INTERVAL 7 DAY) AND birthday <= SUBDATE("1998-01-20", INTERVAL -10 DAY);
