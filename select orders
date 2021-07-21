@@ -9,5 +9,5 @@ ON
     oi.order_id = o.order_id
 WHERE
     (
-        oi.product_id = 7345 OR oi.product_id = 1234
+        oi.product_id = 7345 AND oi.product_id = 1234
     ) AND o.order_status = 2;
